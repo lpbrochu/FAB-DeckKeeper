@@ -1,6 +1,6 @@
 const STORAGE_KEY = "fab-deckkeeper-decks-v5";
 
-const sourceNote = "Legality seeded June 1, 2026 from official FAB Card Legality Policy and Silver Age product pages.";
+const sourceNote = "Legality seeded June 2, 2026 from official FAB Card Legality Policy and product pages.";
 
 const heroCatalog = [
   hero("Arakni", "Assassin", [], [
@@ -9,6 +9,9 @@ const heroCatalog = [
   ]),
   hero("Azalea", "Ranger", [], [
     variant("Silver Age", "Azalea", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ARC039.webp")
+  ]),
+  hero("Aurora", "Runeblade", ["Lightning"], [
+    variant("CC", "Aurora, Legacy of Tempest", "")
   ]),
   hero("Betsy", "Guardian", [], [
     variant("CC", "Betsy, Skin in the Game", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HVY045.webp")
@@ -45,6 +48,9 @@ const heroCatalog = [
   hero("Gravy Bones", "Pirate", [], [
     variant("CC", "Gravy Bones, Shipwrecked Looter", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/FR_SEA043-MV.webp")
   ]),
+  hero("Hala", "Warrior", [], [
+    variant("CC", "Hala, Bladesaint of the Vow", "https://d2wlb52bya4y8z.cloudfront.net/media/cards/small/AHA001-RF.webp", "Armory Deck Origins: Hala preconstructed deck")
+  ]),
   hero("Jarl Vetreidi", "Guardian", ["Elemental", "Ice", "Earth"], [
     variant("CC", "Jarl Vetreidi", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/AJV001-RF.webp")
   ]),
@@ -75,6 +81,9 @@ const heroCatalog = [
   ]),
   hero("Oscilio", "Wizard", ["Elemental", "Lightning"], [
     variant("CC", "Oscilio, Constella Intelligence", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ROS019.webp")
+  ]),
+  hero("Oscilio", "Wizard", ["Lightning"], [
+    variant("CC", "Oscilio, Forked Continuum", "")
   ]),
   hero("Prism", "Illusionist", ["Light"], [
     variant("CC", "Prism, Awakener of Sol", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HER086-CF.webp")
@@ -109,6 +118,9 @@ const heroCatalog = [
   hero("Yoji", "Guardian", [], [
     variant("CC", "Yoji, Royal Protector", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/DYN025-RF.webp")
   ]),
+  hero("Zyggy Starlight", "Illusionist", ["Lightning"], [
+    variant("CC", "Zyggy Starlight", "")
+  ]),
   hero("Iyslander", "Wizard", ["Elemental", "Ice"], [
     variant("Silver Age", "Iyslander", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/EVR120.webp")
   ]),
@@ -121,8 +133,8 @@ function hero(heroName, className, talents, variants) {
   return { hero: heroName, className, talents, variants };
 }
 
-function variant(format, fullName, imageUrl) {
-  return { format, fullName, imageUrl };
+function variant(format, fullName, imageUrl, notes = "") {
+  return { format, fullName, imageUrl, notes };
 }
 
 function thumbnailUrl(url) {
@@ -138,7 +150,7 @@ const starterDecks = heroCatalog.flatMap((entry, index) =>
     talents: entry.talents,
     format: deckVariant.format,
     imageUrl: deckVariant.imageUrl,
-    notes: deckVariant.format === "Silver Age" ? "Legal young hero shell" : "Legal CC hero shell",
+    notes: deckVariant.notes || (deckVariant.format === "Silver Age" ? "Legal young hero shell" : "Legal CC hero shell"),
     favorite: index < 4 && formatIndex === 0,
     updatedAt: Date.now() - (index * 1000 * 60),
     color: colorForSeed(`${entry.hero}${entry.className}`)
@@ -194,13 +206,26 @@ function loadDecks() {
   try {
     const parsed = JSON.parse(current);
     if (!Array.isArray(parsed)) throw new Error("Stored data is not an array.");
-    const normalized = parsed.map(normalizeDeck);
+    const normalized = mergeStarterDecks(parsed.map(normalizeDeck));
     localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized));
     return normalized;
   } catch {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(starterDecks));
     return starterDecks;
   }
+}
+
+function mergeStarterDecks(currentDecks) {
+  const deckKeys = new Set(currentDecks.map(deckKey));
+  const missingDecks = starterDecks
+    .filter((starterDeck) => !deckKeys.has(deckKey(starterDeck)))
+    .map((starterDeck) => ({ ...starterDeck, id: crypto.randomUUID(), updatedAt: Date.now() }));
+
+  return missingDecks.length ? [...missingDecks, ...currentDecks] : currentDecks;
+}
+
+function deckKey(deck) {
+  return [deck.name, deck.hero, deck.className, deck.format].join("::").toLowerCase();
 }
 
 function saveDecks() {

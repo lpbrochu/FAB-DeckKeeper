@@ -15,11 +15,11 @@ Static web app for tracking Flesh and Blood TCG decks on mobile and laptop scree
 
 ## Legality Notes
 
-Default data was seeded on June 1, 2026. The app uses only `CC` and `Silver Age`, following the official FAB Card Legality Policy and Silver Age product pages:
+Default data was seeded on June 2, 2026. The app uses only `CC` and `Silver Age`, following the official FAB Card Legality Policy and product pages:
 
 - Classic Constructed excludes young heroes and Living Legend heroes.
 - Silver Age uses young heroes and common/rare/basic card pools.
-- Silver Age Chapter 3 is listed as coming June 5, 2026, so its heroes were not treated as currently released on June 1, 2026.
+- Omens of the Third Age and Armory Deck Origins: Hala are included in the seeded Classic Constructed deck list.
 
 ## GitHub Pages
 
