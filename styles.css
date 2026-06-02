@@ -442,6 +442,18 @@ select {
   gap: 10px;
 }
 
+.matchup-format {
+  grid-column: 1 / -1;
+  justify-self: start;
+  padding: 5px 9px;
+  color: #eef3f7;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
 .vs {
   display: grid;
   place-items: center;
@@ -655,6 +667,10 @@ dialog::backdrop {
 
   .matchup-pair {
     grid-template-columns: 1fr;
+  }
+
+  .matchup-format {
+    grid-column: auto;
   }
 
   .vs {

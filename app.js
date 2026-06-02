@@ -150,6 +150,7 @@ const $ = (selector) => document.querySelector(selector);
 
 let decks = loadDecks();
 let matchupIds = [];
+let matchupFormat = "";
 
 const elements = {
   search: $("#searchInput"),
@@ -328,13 +329,22 @@ function portraitHtml(deck) {
 }
 
 function randomizeMatchup() {
-  if (decks.length < 2) {
+  const eligibleGroups = Object.entries(decks.reduce((groups, deck) => {
+    groups[deck.format] = groups[deck.format] || [];
+    groups[deck.format].push(deck);
+    return groups;
+  }, {})).filter(([, group]) => group.length >= 2);
+
+  if (!eligibleGroups.length) {
     matchupIds = [];
+    matchupFormat = "";
   } else {
-    const pool = [...decks];
+    const [format, group] = eligibleGroups[Math.floor(Math.random() * eligibleGroups.length)];
+    const pool = [...group];
     const first = pool.splice(Math.floor(Math.random() * pool.length), 1)[0];
     const second = pool[Math.floor(Math.random() * pool.length)];
     matchupIds = [first.id, second.id];
+    matchupFormat = format;
   }
   renderMatchup();
 }
@@ -345,7 +355,7 @@ function renderMatchup() {
   if (pair.length < 2) {
     elements.matchupPair.innerHTML = `
       <div class="empty-state" style="grid-column: 1 / -1">
-        <p>Add at least two decks to randomize a matchup.</p>
+        <p>Add at least two decks in the same format to randomize a matchup.</p>
         <button type="button" data-action="add">Add Deck</button>
       </div>
     `;
@@ -353,6 +363,7 @@ function renderMatchup() {
   }
 
   elements.matchupPair.innerHTML = `
+    <div class="matchup-format">${escapeHtml(matchupFormat || pair[0].format)}</div>
     ${pair.map((deck) => `
       <article class="match-deck">
         ${portraitHtml(deck)}
