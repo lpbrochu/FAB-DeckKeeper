@@ -1,0 +1,9 @@
+{
+  "name": "FAB DeckKeeper",
+  "short_name": "DeckKeeper",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f6f4ef",
+  "theme_color": "#f6f4ef",
+  "description": "Track Flesh and Blood TCG decks and randomize two decks for matchup testing."
+}

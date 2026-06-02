@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f6f4ef">
+    <meta name="description" content="FAB DeckKeeper tracks Flesh and Blood TCG decks and randomizes two decks for matchup testing.">
+    <title>FAB DeckKeeper</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <span></span>
+          </div>
+          <h1>FAB DeckKeeper</h1>
+        </div>
+        <div class="top-actions">
+          <button class="icon-action" id="importButton" type="button" aria-label="Import decks" title="Import decks">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 15v4h14v-4"/></svg>
+          </button>
+          <button class="icon-action" id="exportButton" type="button" aria-label="Export decks" title="Export decks">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V9m0 0 4 4m-4-4-4 4M5 9V5h14v4"/></svg>
+          </button>
+          <button class="icon-action" id="resetButton" type="button" aria-label="Reset sample decks" title="Reset sample decks">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v6h6M20 20v-6h-6M5 15a7 7 0 0 0 11.7 3.2M19 9A7 7 0 0 0 7.3 5.8"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="controls" aria-label="Deck filters">
+          <label class="search-wrap">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.3-4.3M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z"/></svg>
+            <input id="searchInput" type="search" placeholder="Search decks..." autocomplete="off">
+          </label>
+
+          <div class="filter-grid">
+            <label>
+              <span>Hero</span>
+              <select id="heroFilter"></select>
+            </label>
+            <label>
+              <span>Talent</span>
+              <select id="talentFilter"></select>
+            </label>
+            <label>
+              <span>Class</span>
+              <select id="classFilter"></select>
+            </label>
+            <label>
+              <span>Format</span>
+              <select id="formatFilter"></select>
+            </label>
+          </div>
+        </section>
+
+        <section class="section-head">
+          <div>
+            <p>Your Decks</p>
+            <strong id="deckCount">0</strong>
+          </div>
+          <label class="sort-control">
+            <span>Sort</span>
+            <select id="sortSelect">
+              <option value="updated">Recently Updated</option>
+              <option value="name">Name</option>
+              <option value="hero">Hero</option>
+              <option value="class">Class</option>
+            </select>
+          </label>
+        </section>
+
+        <section id="deckList" class="deck-list" aria-live="polite"></section>
+
+        <section class="matchup-card" id="matchupSection" aria-label="Random matchup">
+          <div class="matchup-head">
+            <div>
+              <p>Random Matchup</p>
+              <span>Shuffle two of your saved deck shells.</span>
+            </div>
+            <button id="shuffleButton" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3h5v5M4 7h4.5c2.2 0 3.4 1.1 4.6 3.2M21 16v5h-5M4 17h4.5c2.2 0 3.4-1.1 4.6-3.2M15 7h6M15 17h6"/></svg>
+              Shuffle
+            </button>
+          </div>
+          <div id="matchupPair" class="matchup-pair"></div>
+        </section>
+      </main>
+
+      <button class="fab" id="addDeckButton" type="button" aria-label="Add deck" title="Add deck">+</button>
+
+      <nav class="bottom-tabs" aria-label="Primary">
+        <button class="active" data-target="deckList" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v16H7zM4 7h3m10 0h3M4 17h3m10 0h3"/></svg>
+          Decks
+        </button>
+        <button data-target="matchupSection" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 20 16-16M14 4h6v6M20 20 4 4"/></svg>
+          Matchup
+        </button>
+      </nav>
+    </div>
+
+    <dialog id="deckDialog">
+      <form method="dialog" id="deckForm">
+        <div class="dialog-head">
+          <h2 id="dialogTitle">Add Deck</h2>
+          <button value="cancel" class="close-button" type="button" id="closeDialogButton" aria-label="Close">×</button>
+        </div>
+        <input type="hidden" id="deckId">
+        <div class="form-grid">
+          <label>Deck Name<input id="deckName" required maxlength="60"></label>
+          <label>Hero<input id="deckHero" required maxlength="40"></label>
+          <label>Class<input id="deckClass" required maxlength="40"></label>
+          <label>Talents<input id="deckTalents" placeholder="Ice, Lightning, Elemental"></label>
+          <label>Format
+            <select id="deckFormat">
+              <option>CC</option>
+              <option>Silver Age</option>
+            </select>
+          </label>
+          <label class="wide">Notes<input id="deckNotes" maxlength="90" placeholder="List version, testing note, or local meta note"></label>
+        </div>
+        <div class="dialog-actions">
+          <button type="button" class="danger" id="deleteDeckButton">Delete</button>
+          <button type="button" class="secondary" id="cancelDeckButton">Cancel</button>
+          <button type="submit">Save Deck</button>
+        </div>
+      </form>
+    </dialog>
+
+    <input id="importFile" type="file" accept="application/json,.json" hidden>
+    <script src="app.js?v=5"></script>
+  </body>
+</html>
