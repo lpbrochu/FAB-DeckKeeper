@@ -352,6 +352,13 @@ function randomizeMatchup() {
 function renderMatchup() {
   const pair = matchupIds.map((id) => decks.find((deck) => deck.id === id)).filter(Boolean);
 
+  if (pair.length === 2 && pair[0].format !== pair[1].format) {
+    matchupIds = [];
+    matchupFormat = "";
+    randomizeMatchup();
+    return;
+  }
+
   if (pair.length < 2) {
     elements.matchupPair.innerHTML = `
       <div class="empty-state" style="grid-column: 1 / -1">
