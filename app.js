@@ -162,6 +162,7 @@ const $ = (selector) => document.querySelector(selector);
 
 let decks = loadDecks();
 let matchupIds = [];
+let matchupLocks = [false, false];
 let matchupFormat = "";
 
 const elements = {
@@ -354,6 +355,40 @@ function portraitHtml(deck) {
 }
 
 function randomizeMatchup() {
+  const lockedEntries = matchupIds
+    .map((id, index) => ({ deck: decks.find((item) => item.id === id), index, locked: matchupLocks[index] }))
+    .filter((entry) => entry.locked && entry.deck);
+
+  matchupLocks = matchupLocks.map((locked, index) => locked && Boolean(decks.find((deck) => deck.id === matchupIds[index])));
+
+  if (lockedEntries.length === 2 && lockedEntries[0].deck.format === lockedEntries[1].deck.format) {
+    matchupFormat = lockedEntries[0].deck.format;
+    renderMatchup();
+    return;
+  }
+
+  if (lockedEntries.length === 2) {
+    matchupLocks = [false, false];
+  }
+
+  if (lockedEntries.length === 1) {
+    const { deck: lockedDeck, index: lockedIndex } = lockedEntries[0];
+    const candidates = decks.filter((deck) => deck.format === lockedDeck.format && deck.id !== lockedDeck.id);
+
+    if (!candidates.length) {
+      matchupIds = lockedIndex === 0 ? [lockedDeck.id] : ["", lockedDeck.id];
+      matchupFormat = lockedDeck.format;
+      renderMatchup();
+      return;
+    }
+
+    const nextDeck = candidates[Math.floor(Math.random() * candidates.length)];
+    matchupIds = lockedIndex === 0 ? [lockedDeck.id, nextDeck.id] : [nextDeck.id, lockedDeck.id];
+    matchupFormat = lockedDeck.format;
+    renderMatchup();
+    return;
+  }
+
   const eligibleGroups = Object.entries(decks.reduce((groups, deck) => {
     groups[deck.format] = groups[deck.format] || [];
     groups[deck.format].push(deck);
@@ -362,6 +397,7 @@ function randomizeMatchup() {
 
   if (!eligibleGroups.length) {
     matchupIds = [];
+    matchupLocks = [false, false];
     matchupFormat = "";
   } else {
     const [format, group] = eligibleGroups[Math.floor(Math.random() * eligibleGroups.length)];
@@ -375,10 +411,11 @@ function randomizeMatchup() {
 }
 
 function renderMatchup() {
-  const pair = matchupIds.map((id) => decks.find((deck) => deck.id === id)).filter(Boolean);
+  const pair = matchupIds.map((id, index) => ({ deck: decks.find((item) => item.id === id), index })).filter((entry) => entry.deck);
 
-  if (pair.length === 2 && pair[0].format !== pair[1].format) {
+  if (pair.length === 2 && pair[0].deck.format !== pair[1].deck.format) {
     matchupIds = [];
+    matchupLocks = [false, false];
     matchupFormat = "";
     randomizeMatchup();
     return;
@@ -395,16 +432,69 @@ function renderMatchup() {
   }
 
   elements.matchupPair.innerHTML = `
-    <div class="matchup-format">${escapeHtml(matchupFormat || pair[0].format)}</div>
-    ${pair.map((deck) => `
+    <div class="matchup-format">${escapeHtml(matchupFormat || pair[0].deck.format)}</div>
+    ${pair.map(({ deck, index }) => `
       <article class="match-deck">
+        <button class="lock-button ${matchupLocks[index] ? "locked" : ""}" type="button" data-action="lock-matchup" data-index="${index}" aria-label="${matchupLocks[index] ? "Unlock" : "Lock"} ${escapeHtml(deck.name)}" title="${matchupLocks[index] ? "Unlock deck" : "Lock deck"}">
+          ${matchupLocks[index] ? lockIcon() : unlockIcon()}
+        </button>
         ${portraitHtml(deck)}
         <h3>${escapeHtml(deck.name)}</h3>
         <p>${escapeHtml(deck.hero)} · ${escapeHtml(deck.className)}</p>
+        <label class="match-select">
+          <span>Deck</span>
+          <select data-action="select-matchup" data-index="${index}" aria-label="Choose matchup deck ${index + 1}">
+            ${matchupDeckOptionsHtml(deck.id)}
+          </select>
+        </label>
         <div class="chips">${chipHtml(deck)}</div>
       </article>
     `).join('<div class="vs">VS</div>')}
   `;
+}
+
+function matchupDeckOptionsHtml(selectedId) {
+  const formats = uniqueValues((deck) => [deck.format]);
+
+  return formats.map((format) => {
+    const options = decks
+      .filter((deck) => deck.format === format)
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map((deck) => `<option value="${escapeHtml(deck.id)}" ${deck.id === selectedId ? "selected" : ""}>${escapeHtml(deck.name)}</option>`)
+      .join("");
+
+    return `<optgroup label="${escapeHtml(format)}">${options}</optgroup>`;
+  }).join("");
+}
+
+function selectMatchupDeck(index, deckId) {
+  const selectedDeck = decks.find((deck) => deck.id === deckId);
+  if (!selectedDeck) return;
+
+  const otherIndex = index === 0 ? 1 : 0;
+  const candidates = decks.filter((deck) => deck.format === selectedDeck.format && deck.id !== selectedDeck.id);
+
+  matchupIds[index] = selectedDeck.id;
+  matchupLocks[index] = true;
+  matchupLocks[otherIndex] = false;
+  matchupFormat = selectedDeck.format;
+
+  if (candidates.length) {
+    const nextDeck = candidates[Math.floor(Math.random() * candidates.length)];
+    matchupIds[otherIndex] = nextDeck.id;
+  } else {
+    matchupIds[otherIndex] = "";
+  }
+
+  renderMatchup();
+}
+
+function lockIcon() {
+  return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V8a5 5 0 0 1 10 0v3M6 11h12v9H6z"/></svg>';
+}
+
+function unlockIcon() {
+  return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V8a5 5 0 0 1 8.5-3.6M17 11h1v9H6v-9h7"/></svg>';
 }
 
 function openDeckDialog(deck = null) {
@@ -526,6 +616,19 @@ elements.deckList.addEventListener("click", (event) => {
 
 elements.matchupPair.addEventListener("click", (event) => {
   if (event.target.closest("[data-action='add']")) openDeckDialog();
+
+  const lockButton = event.target.closest("[data-action='lock-matchup']");
+  if (lockButton) {
+    const index = Number(lockButton.dataset.index);
+    matchupLocks[index] = !matchupLocks[index];
+    renderMatchup();
+  }
+});
+
+elements.matchupPair.addEventListener("change", (event) => {
+  if (event.target.dataset.action === "select-matchup") {
+    selectMatchupDeck(Number(event.target.dataset.index), event.target.value);
+  }
 });
 
 document.querySelectorAll(".bottom-tabs button").forEach((button) => {
@@ -543,6 +646,7 @@ $("#importButton").addEventListener("click", () => elements.importFile.click());
 $("#resetButton").addEventListener("click", () => {
   if (confirm("Replace your current decks with the current legal hero defaults?")) {
     decks = starterDecks.map((deck) => ({ ...deck, id: crypto.randomUUID(), updatedAt: Date.now() }));
+    matchupLocks = [false, false];
     saveDecks();
     randomizeMatchup();
     refresh();

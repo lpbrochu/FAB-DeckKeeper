@@ -463,11 +463,43 @@ select {
 }
 
 .match-deck {
+  position: relative;
   min-width: 0;
   padding: 12px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 8px;
+}
+
+.lock-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  color: #d8dee7;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+}
+
+.lock-button:hover,
+.lock-button:focus-visible {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.lock-button.locked {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent-dark);
+}
+
+.lock-button svg {
+  width: 18px;
+  height: 18px;
 }
 
 .match-deck .portrait {
@@ -488,6 +520,35 @@ select {
   margin: 4px 0 10px;
   color: #c5ced8;
   font-size: 0.82rem;
+}
+
+.match-select {
+  display: grid;
+  gap: 5px;
+  margin: 0 0 10px;
+}
+
+.match-select span {
+  color: #c5ced8;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.match-select select {
+  width: 100%;
+  min-height: 36px;
+  padding: 0 9px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  font-size: 0.82rem;
+}
+
+.match-select option,
+.match-select optgroup {
+  color: var(--ink);
 }
 
 .match-deck .chip {

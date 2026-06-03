@@ -29,3 +29,19 @@ Default data was seeded on June 2, 2026. The app uses only `CC` and `Silver Age`
 4. Set the source to the branch and root folder containing `index.html`.
 
 The app will be available at the GitHub Pages URL for the repository.
+
+## Local Development
+
+Install dependencies once:
+
+```sh
+npm install
+```
+
+Start the Vite dev server:
+
+```sh
+npm start
+```
+
+Open `http://127.0.0.1:5173`.
