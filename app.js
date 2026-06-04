@@ -1,9 +1,11 @@
 const STORAGE_KEY = "fab-deckkeeper-decks-v5";
 
-const sourceNote = "Legality seeded June 2, 2026 from official FAB Card Legality Policy and product pages.";
+const sourceNote = "Legality seeded June 2, 2026 from official FAB Card Legality Policy and product pages. Latest heroes refreshed June 4, 2026 from Fabrary public decks.";
+const deckFormats = ["CC", "Silver Age", "Living Legend"];
 
 const heroCatalog = [
   hero("Arakni", "Assassin", [], [
+    variant("CC", "Arakni, Huntsman", ""),
     variant("CC", "Arakni, Marionette", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HNT001.webp"),
     variant("Silver Age", "Arakni, Web of Deceit", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/WOD001-RF.webp")
   ]),
@@ -11,10 +13,15 @@ const heroCatalog = [
     variant("Silver Age", "Azalea", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ARC039.webp")
   ]),
   hero("Aurora", "Runeblade", ["Lightning"], [
-    variant("CC", "Aurora, Legacy of Tempest", "")
+    variant("CC", "Aurora, Legacy of Tempest", ""),
+    variant("Silver Age", "Aurora, Emissary of Lightning", ""),
+    variant("Living Legend", "Aurora, Shooting Star", "")
   ]),
   hero("Betsy", "Guardian", [], [
     variant("CC", "Betsy, Skin in the Game", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HVY045.webp")
+  ]),
+  hero("Blaze", "Wizard", [], [
+    variant("Silver Age", "Blaze, Firemind", "")
   ]),
   hero("Boltyn", "Warrior", ["Light"], [
     variant("CC", "Ser Boltyn, Breaker of Dawn", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/MON029.webp"),
@@ -24,11 +31,19 @@ const heroCatalog = [
     variant("CC", "Bravo, Showstopper", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/WTR038.webp"),
     variant("Silver Age", "Bravo, Flattering Showman", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/BDD001.webp")
   ]),
+  hero("Briar", "Runeblade", ["Elemental", "Earth", "Lightning"], [
+    variant("Silver Age", "Briar", "")
+  ]),
+  hero("Chane", "Runeblade", ["Shadow"], [
+    variant("Silver Age", "Chane", "")
+  ]),
   hero("Cindra", "Ninja", ["Draconic"], [
-    variant("CC", "Cindra, Dracai of Retribution", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HNT054.webp")
+    variant("CC", "Cindra, Dracai of Retribution", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HNT054.webp"),
+    variant("Silver Age", "Cindra", "")
   ]),
   hero("Dash", "Mechanologist", [], [
     variant("CC", "Dash I/O", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/EVO001.webp"),
+    variant("Silver Age", "Dash, Database", ""),
     variant("Silver Age", "Dash", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ARC002.webp")
   ]),
   hero("Dorinthea", "Warrior", [], [
@@ -52,7 +67,10 @@ const heroCatalog = [
     variant("CC", "Hala, Bladesaint of the Vow", "https://d2wlb52bya4y8z.cloudfront.net/media/cards/small/AHA001-RF.webp", "Armory Deck Origins: Hala preconstructed deck")
   ]),
   hero("Jarl Vetreidi", "Guardian", ["Elemental", "Ice", "Earth"], [
-    variant("CC", "Jarl Vetreidi", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/AJV001-RF.webp")
+    variant("CC", "Jarl Vetreiði", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/AJV001-RF.webp")
+  ]),
+  hero("Ira", "Ninja", [], [
+    variant("CC", "Ira, Scarlet Revenger", "")
   ]),
   hero("Kassai", "Warrior", [], [
     variant("CC", "Kassai of the Golden Sand", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HVY090.webp")
@@ -64,11 +82,21 @@ const heroCatalog = [
     variant("CC", "Kayo, Armed and Dangerous", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HVY001.webp"),
     variant("Silver Age", "Kayo", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HVY002.webp")
   ]),
+  hero("Kayo", "Brute", ["Reviled"], [
+    variant("CC", "Kayo, Underhanded Cheat", "")
+  ]),
   hero("Levia", "Brute", ["Shadow"], [
     variant("CC", "Levia, Shadowborn Abomination", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/MON119.webp")
   ]),
+  hero("Lexi", "Ranger", ["Elemental", "Ice", "Lightning"], [
+    variant("Silver Age", "Lexi", ""),
+    variant("Living Legend", "Lexi, Livewire", "")
+  ]),
   hero("Lyath Goldmane", "Wizard", [], [
     variant("CC", "Lyath Goldmane, Vile Savant", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/FR_SUP071.webp")
+  ]),
+  hero("Marlynn", "Ranger", ["Pirate"], [
+    variant("CC", "Marlynn, Treasure Hunter", "")
   ]),
   hero("Maxx", "Mechanologist", [], [
     variant("CC", "Maxx \"The Hype\" Nitro", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/EVO004.webp")
@@ -79,6 +107,9 @@ const heroCatalog = [
   hero("Olympia", "Warrior", [], [
     variant("CC", "Olympia, Prized Fighter", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HVY092.webp")
   ]),
+  hero("Oldhim", "Guardian", ["Elemental", "Earth", "Ice"], [
+    variant("Silver Age", "Oldhim", "")
+  ]),
   hero("Oscilio", "Wizard", ["Elemental", "Lightning"], [
     variant("CC", "Oscilio, Constella Intelligence", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ROS019.webp")
   ]),
@@ -86,10 +117,18 @@ const heroCatalog = [
     variant("CC", "Oscilio, Forked Continuum", "")
   ]),
   hero("Prism", "Illusionist", ["Light"], [
-    variant("CC", "Prism, Awakener of Sol", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HER086-CF.webp")
+    variant("CC", "Prism, Awakener of Sol", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HER086-CF.webp"),
+    variant("Living Legend", "Prism, Sculptor of Arc Light", "")
+  ]),
+  hero("Pleiades", "Guardian", ["Revered"], [
+    variant("CC", "Pleiades, Superstar", "")
+  ]),
+  hero("Puffin", "Mechanologist", ["Pirate"], [
+    variant("CC", "Puffin, Hightail", "")
   ]),
   hero("Rhinar", "Brute", [], [
-    variant("CC", "Rhinar, Reckless Rampage", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/WTR001.webp")
+    variant("CC", "Rhinar, Reckless Rampage", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/WTR001.webp"),
+    variant("Silver Age", "Rhinar", "")
   ]),
   hero("Riptide", "Ranger", [], [
     variant("CC", "Riptide, Lurker of the Deep", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HER078-CF.webp")
@@ -98,10 +137,12 @@ const heroCatalog = [
     variant("CC", "Teklovossen, Esteemed Magnate", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/EVO007.webp")
   ]),
   hero("Uzuri", "Assassin", [], [
-    variant("CC", "Uzuri, Switchblade", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HER077-CF.webp")
+    variant("CC", "Uzuri, Switchblade", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HER077-CF.webp"),
+    variant("Silver Age", "Uzuri", "")
   ]),
   hero("Valda", "Guardian", [], [
-    variant("CC", "Valda, Seismic Impact", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/MPG001.webp")
+    variant("CC", "Valda, Seismic Impact", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/MPG001.webp"),
+    variant("Silver Age", "Valda Brightaxe", "")
   ]),
   hero("Verdance", "Wizard", ["Elemental", "Earth"], [
     variant("CC", "Verdance, Thorn of the Rose", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ROS013.webp")
@@ -137,6 +178,12 @@ function variant(format, fullName, imageUrl, notes = "") {
   return { format, fullName, imageUrl, notes };
 }
 
+function defaultDeckNote(format) {
+  if (format === "Silver Age") return "Legal young hero shell";
+  if (format === "Living Legend") return "Living Legend hero shell";
+  return "Legal CC hero shell";
+}
+
 function thumbnailUrl(url) {
   return String(url || "").replace("/media/cards/large/", "/media/cards/small/");
 }
@@ -150,7 +197,7 @@ const starterDecks = heroCatalog.flatMap((entry, index) =>
     talents: entry.talents,
     format: deckVariant.format,
     imageUrl: deckVariant.imageUrl,
-    notes: deckVariant.notes || (deckVariant.format === "Silver Age" ? "Legal young hero shell" : "Legal CC hero shell"),
+    notes: deckVariant.notes || defaultDeckNote(deckVariant.format),
     favorite: index < 4 && formatIndex === 0,
     updatedAt: Date.now() - (index * 1000 * 60),
     color: colorForSeed(`${entry.hero}${entry.className}`)
@@ -187,7 +234,7 @@ function normalizeDeck(deck) {
     hero: deck.hero || "Unknown",
     className: deck.className || deck.class || "Unknown",
     talents: Array.isArray(deck.talents) ? deck.talents : [],
-    format: ["CC", "Silver Age"].includes(deck.format) ? deck.format : "CC",
+    format: deckFormats.includes(deck.format) ? deck.format : "CC",
     imageUrl: thumbnailUrl(deck.imageUrl || ""),
     notes: deck.notes || "",
     favorite: Boolean(deck.favorite),
@@ -226,7 +273,15 @@ function mergeStarterDecks(currentDecks) {
 }
 
 function deckKey(deck) {
-  return [deck.name, deck.hero, deck.className, deck.format].join("::").toLowerCase();
+  return [deck.name, deck.hero, deck.className, deck.format].map(normalizeKeyPart).join("::");
+}
+
+function normalizeKeyPart(value) {
+  return String(value)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[ðÐ]/g, "d")
+    .toLowerCase();
 }
 
 function saveDecks() {
@@ -247,7 +302,7 @@ function refreshFilters() {
   fillSelect(elements.heroFilter, uniqueValues((deck) => [deck.hero]), "All");
   fillSelect(elements.talentFilter, uniqueValues((deck) => deck.talents), "All");
   fillSelect(elements.classFilter, uniqueValues((deck) => [deck.className]), "All");
-  fillSelect(elements.formatFilter, ["CC", "Silver Age"], "All");
+  fillSelect(elements.formatFilter, deckFormats, "All");
 }
 
 function filteredDecks() {
