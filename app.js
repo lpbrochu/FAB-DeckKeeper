@@ -466,7 +466,7 @@ function chipHtml(deck) {
   const chips = [deck.format, deck.className, ...deck.talents];
   return chips.map((chip, index) => {
     const color = chipPalette[Math.abs(hashCode(chip) + index) % chipPalette.length];
-    return `<span class="chip" style="--chip:${color}">${escapeHtml(chip)}</span>`;
+    return `<span class="chip" style="--chip-seed:${color}">${escapeHtml(chip)}</span>`;
   }).join("");
 }
 

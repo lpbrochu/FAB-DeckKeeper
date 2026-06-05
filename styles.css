@@ -11,9 +11,52 @@
   --accent-dark: #6f2424;
   --navy: #172433;
   --chip: #e9edf2;
+  --chip-ink: #313944;
+  --field: #fbfaf8;
+  --button-soft: #f8f7f4;
+  --topbar: rgba(246, 244, 239, 0.9);
+  --topbar-line: rgba(201, 193, 179, 0.55);
+  --bottom-nav: rgba(246, 244, 239, 0.94);
+  --page-glow-start: rgba(255, 255, 255, 0.8);
+  --page-glow-end: rgba(246, 244, 239, 0.96);
+  --hairline-glow: rgba(255, 255, 255, 0.86);
+  --icon-hover: rgba(23, 36, 51, 0.08);
+  --active-tab: rgba(155, 47, 47, 0.08);
+  --chip-line: rgba(24, 32, 42, 0.08);
   --shadow: 0 18px 45px rgba(33, 31, 27, 0.08);
   color-scheme: light;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111418;
+    --surface: #1a1f25;
+    --surface-2: #232932;
+    --ink: #f1f4f8;
+    --muted: #a7b0bc;
+    --faint: #7c8794;
+    --line: #303842;
+    --line-strong: #46505d;
+    --accent: #d85f5f;
+    --accent-dark: #a93c3c;
+    --navy: #171f2a;
+    --chip: #26313d;
+    --chip-ink: #e8edf3;
+    --field: #151a20;
+    --button-soft: #20262d;
+    --topbar: rgba(17, 20, 24, 0.9);
+    --topbar-line: rgba(70, 80, 93, 0.55);
+    --bottom-nav: rgba(17, 20, 24, 0.94);
+    --page-glow-start: rgba(46, 52, 60, 0.42);
+    --page-glow-end: rgba(17, 20, 24, 0.96);
+    --hairline-glow: rgba(255, 255, 255, 0.04);
+    --icon-hover: rgba(255, 255, 255, 0.08);
+    --active-tab: rgba(216, 95, 95, 0.14);
+    --chip-line: rgba(255, 255, 255, 0.08);
+    --shadow: 0 18px 45px rgba(0, 0, 0, 0.38);
+    color-scheme: dark;
+  }
 }
 
 * {
@@ -28,7 +71,7 @@ body {
   min-height: 100vh;
   margin: 0;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(246, 244, 239, 0.96) 340px),
+    linear-gradient(180deg, var(--page-glow-start), var(--page-glow-end) 340px),
     var(--bg);
   color: var(--ink);
 }
@@ -61,8 +104,8 @@ button {
   gap: 18px;
   min-height: 76px;
   padding: max(12px, env(safe-area-inset-top)) 0 12px;
-  background: rgba(246, 244, 239, 0.9);
-  border-bottom: 1px solid rgba(201, 193, 179, 0.55);
+  background: var(--topbar);
+  border-bottom: 1px solid var(--topbar-line);
   backdrop-filter: blur(18px);
 }
 
@@ -126,7 +169,7 @@ button {
 
 .icon-action:hover,
 .icon-action:focus-visible {
-  background: rgba(23, 36, 51, 0.08);
+  background: var(--icon-hover);
 }
 
 svg {
@@ -160,7 +203,7 @@ main {
   border: 1px solid var(--line);
   border-radius: 8px;
   color: var(--faint);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  box-shadow: 0 1px 0 var(--hairline-glow);
 }
 
 .search-wrap input {
@@ -253,7 +296,7 @@ select {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 8px;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.86);
+  box-shadow: 0 1px 0 var(--hairline-glow);
 }
 
 .portrait {
@@ -342,7 +385,7 @@ select {
   height: 34px;
   place-items: center;
   color: var(--muted);
-  background: #f8f7f4;
+  background: var(--button-soft);
   border: 1px solid var(--line);
   border-radius: 8px;
 }
@@ -368,9 +411,9 @@ select {
 .chip {
   max-width: 100%;
   padding: 4px 8px;
-  color: #313944;
-  background: var(--chip);
-  border: 1px solid rgba(24, 32, 42, 0.08);
+  color: var(--chip-ink);
+  background: color-mix(in srgb, var(--chip), var(--chip-seed, var(--chip)) 34%);
+  border: 1px solid var(--chip-line);
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 680;
@@ -599,7 +642,7 @@ select {
   width: min(100%, 1180px);
   margin: 0 auto;
   padding: 0 22px env(safe-area-inset-bottom);
-  background: rgba(246, 244, 239, 0.94);
+  background: var(--bottom-nav);
   border-top: 1px solid var(--line);
   backdrop-filter: blur(18px);
 }
@@ -615,7 +658,7 @@ select {
 
 .bottom-tabs button.active {
   color: var(--accent);
-  background: rgba(155, 47, 47, 0.08);
+  background: var(--active-tab);
 }
 
 dialog {
@@ -679,7 +722,7 @@ dialog::backdrop {
   min-height: 44px;
   padding: 0 10px;
   color: var(--ink);
-  background: #fbfaf8;
+  background: var(--field);
   border: 1px solid var(--line);
   border-radius: 8px;
 }
