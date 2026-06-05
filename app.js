@@ -1,7 +1,7 @@
 const STORAGE_KEY = "fab-deckkeeper-decks-v5";
 
-const sourceNote = "Legality seeded June 2, 2026 from official FAB Card Legality Policy and product pages. Latest heroes refreshed June 4, 2026 from Fabrary public decks.";
-const deckFormats = ["CC", "Silver Age", "Living Legend"];
+const sourceNote = "Legality seeded June 2, 2026 from official FAB Card Legality Policy and product pages. Latest heroes refreshed June 4, 2026 from Fabrary public deck facets and Card Vault hero records.";
+const deckFormats = ["CC", "Blitz", "Silver Age", "Open", "Living Legend", "Ultimate Pit Fight", "Clash", "Draft", "Sealed", "Golden Age"];
 
 const heroCatalog = [
   hero("Arakni", "Assassin", [], [
@@ -99,7 +99,7 @@ const heroCatalog = [
     variant("CC", "Marlynn, Treasure Hunter", "")
   ]),
   hero("Maxx", "Mechanologist", [], [
-    variant("CC", "Maxx \"The Hype\" Nitro", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/EVO004.webp")
+    variant("CC", "Maxx 'The Hype' Nitro", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/EVO004.webp")
   ]),
   hero("Nuu", "Assassin", ["Mystic"], [
     variant("CC", "Nuu, Alluring Desire", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/DE_MST001.webp")
@@ -170,6 +170,214 @@ const heroCatalog = [
   ])
 ];
 
+const fabraryHeroAdditions = [
+  hero("Arakni", "Assassin", ["Chaos"], [
+    variant("Silver Age", "Arakni", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ARK001.webp"),
+    variant("CC", "Arakni, 5L!p3d 7hRu 7h3 cR4X", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/AAC001.webp"),
+    variant("Silver Age", "Arakni, Solitary Confinement", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HNT262-MV.webp")
+  ]),
+  hero("Aurora", "Runeblade", ["Elemental"], [
+    variant("Silver Age", "Aurora", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ROS008.webp")
+  ]),
+  hero("Azalea", "Ranger", [], [
+    variant("Living Legend", "Azalea, Ace in the Hole", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/AAZ001.webp")
+  ]),
+  hero("Baalghor", "Unknown", ["Shadow"], [
+    variant("Silver Age", "Baalghor, Omen of the End", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/IAR159-MV.webp")
+  ]),
+  hero("Benji", "Ninja", [], [
+    variant("Silver Age", "Benji, the Piercing Wind", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/OUT047.webp")
+  ]),
+  hero("Betsy", "Guardian", [], [
+    variant("Silver Age", "Betsy", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HVY046.webp")
+  ]),
+  hero("Bolfar", "Guardian", [], [
+    variant("Ultimate Pit Fight", "Bolfar, Bear Hands", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SMP001.webp")
+  ]),
+  hero("Bravo", "Guardian", ["Elemental"], [
+    variant("Silver Age", "Bravo", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/1HB001.webp"),
+    variant("Open", "Bravo, Star of the Show", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/EVR017.webp")
+  ]),
+  hero("Brevant", "Guardian", [], [
+    variant("Ultimate Pit Fight", "Brevant, Civic Protector", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/TCC027-RF.webp")
+  ]),
+  hero("Briar", "Runeblade", ["Elemental"], [
+    variant("Living Legend", "Briar, Warden of Thorns", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ROS254-MV.webp")
+  ]),
+  hero("Brutus", "Unknown", [], [
+    variant("Ultimate Pit Fight", "Brutus, Summa Rudis", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/JDG077.webp")
+  ]),
+  hero("Chane", "Runeblade", ["Shadow"], [
+    variant("Open", "Chane, Bound by Shadow", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ART002.webp")
+  ]),
+  hero("Dash", "Mechanologist", [], [
+    variant("Golden Age", "Dash, Inventor Extraordinaire", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/U-CRU098.webp")
+  ]),
+  hero("Data Doll MKII", "Mechanologist", [], [
+    variant("Silver Age", "Data Doll MKII", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/U-CRU099.webp")
+  ]),
+  hero("Dorinthea", "Warrior", [], [
+    variant("Silver Age", "Dorinthea, Quicksilver Prodigy", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/DDD001.webp")
+  ]),
+  hero("Dromai", "Illusionist", ["Draconic"], [
+    variant("Silver Age", "Dromai", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/UPR002.webp"),
+    variant("CC", "Dromai, Ash Artist", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/UPR001.webp")
+  ]),
+  hero("Enigma", "Illusionist", ["Mystic"], [
+    variant("Golden Age", "Enigma, Ledger of Ancestry", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/MST025.webp"),
+    variant("Blitz", "Enigma, New Moon", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/MST238-RF.webp")
+  ]),
+  hero("Fang", "Warrior", ["Royal", "Draconic"], [
+    variant("Silver Age", "Fang", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HNT099.webp")
+  ]),
+  hero("Fightmaster Kox", "Guardian", [], [
+    variant("Ultimate Pit Fight", "Fightmaster Kox", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SMP003.webp")
+  ]),
+  hero("Florian", "Runeblade", ["Elemental"], [
+    variant("Silver Age", "Florian", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ROS002.webp"),
+    variant("Living Legend", "Florian, Rotwood Harbinger", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ROS001.webp")
+  ]),
+  hero("Frankie", "Necromancer", [], [
+    variant("Ultimate Pit Fight", "Frankie, Make Ends Meat", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/LSS021-MV.webp")
+  ]),
+  hero("Genis Wotchuneed", "Merchant", [], [
+    variant("Ultimate Pit Fight", "Genis Wotchuneed", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/EVR085.webp")
+  ]),
+  hero("Gravy Bones", "Pirate", [], [
+    variant("Silver Age", "Gravy Bones", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SGB001.webp")
+  ]),
+  hero("Groundbreaker Crix", "Guardian", [], [
+    variant("Ultimate Pit Fight", "Groundbreaker Crix", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SMP004.webp")
+  ]),
+  hero("Hala", "Warrior", [], [
+    variant("Silver Age", "Hala", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/MPW004-MV.webp")
+  ]),
+  hero("Ira", "Ninja", [], [
+    variant("Silver Age", "Ira, Crimson Haze", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/I-CRU046.webp")
+  ]),
+  hero("Iyslander", "Wizard", ["Elemental"], [
+    variant("Golden Age", "Iyslander, Stormbind", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/UPR102.webp")
+  ]),
+  hero("Kano", "Wizard", [], [
+    variant("Silver Age", "Kano", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/1HK001.webp"),
+    variant("Golden Age", "Kano, Dracai of Aether", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/U-CRU158.webp")
+  ]),
+  hero("Kassai", "Warrior", [], [
+    variant("Silver Age", "Kassai", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HVY091.webp"),
+    variant("Silver Age", "Kassai, Cintari Sellsword", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/U-CRU077.webp")
+  ]),
+  hero("Katsu", "Ninja", [], [
+    variant("Silver Age", "Katsu", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/KAT001.webp")
+  ]),
+  hero("Kavdaen", "Merchant", [], [
+    variant("Silver Age", "Kavdaen, Trader of Skins", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/U-CRU118.webp")
+  ]),
+  hero("Kayo", "Brute", ["Reviled"], [
+    variant("Ultimate Pit Fight", "Kayo, Berserker Runt", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/U-CRU002.webp"),
+    variant("Silver Age", "Kayo, Strong-arm", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SUP064.webp")
+  ]),
+  hero("Levia", "Brute", ["Shadow"], [
+    variant("Silver Age", "Levia", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/DTD104.webp")
+  ]),
+  hero("Lyath Goldmane", "Guardian", ["Reviled"], [
+    variant("Silver Age", "Lyath Goldmane", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SLY001.webp")
+  ]),
+  hero("Marlynn", "Pirate", [], [
+    variant("Silver Age", "Marlynn", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SEA083.webp")
+  ]),
+  hero("Maxx Nitro", "Mechanologist", [], [
+    variant("Silver Age", "Maxx Nitro", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/EVO005.webp")
+  ]),
+  hero("Melody", "Bard", [], [
+    variant("Ultimate Pit Fight", "Melody, Sing-along", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/TCC049-RF.webp")
+  ]),
+  hero("Nuu", "Assassin", ["Mystic"], [
+    variant("Silver Age", "Nuu", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/MST002.webp")
+  ]),
+  hero("Oldhim", "Guardian", ["Elemental"], [
+    variant("Golden Age", "Oldhim, Grandfather of Eternity", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/U-ELE001.webp")
+  ]),
+  hero("Olympia", "Warrior", [], [
+    variant("Silver Age", "Olympia", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/MPW006.webp")
+  ]),
+  hero("Oscilio", "Wizard", ["Elemental", "Lightning"], [
+    variant("Silver Age", "Oscilio", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ROS020.webp"),
+    variant("Silver Age", "Oscilio, Scion of the Third Age", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/OMN095.webp")
+  ]),
+  hero("Pleiades", "Guardian", ["Revered"], [
+    variant("Silver Age", "Pleiades", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SUP010.webp")
+  ]),
+  hero("Prism", "Illusionist", ["Light"], [
+    variant("Silver Age", "Prism", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/U-MON002.webp"),
+    variant("Blitz", "Prism, Advent of Thrones", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/DTD002.webp")
+  ]),
+  hero("Professor Teklovossen", "Mechanologist", [], [
+    variant("Ultimate Pit Fight", "Professor Teklovossen", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/TCC001-RF.webp")
+  ]),
+  hero("Puffin", "Pirate", [], [
+    variant("Silver Age", "Puffin", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SEA002.webp")
+  ]),
+  hero("Reya", "Guardian", [], [
+    variant("Ultimate Pit Fight", "Reya, the Unyielding", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SMP005.webp")
+  ]),
+  hero("Riptide", "Ranger", [], [
+    variant("Silver Age", "Riptide", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/OUT092.webp")
+  ]),
+  hero("Scurv", "Pirate", [], [
+    variant("Silver Age", "Scurv, Stowaway", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SEA123.webp")
+  ]),
+  hero("Shiyana", "Shapeshifter", [], [
+    variant("Blitz", "Shiyana, Diamond Gemini", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/U-CRU097-RF.webp")
+  ]),
+  hero("Squizzy & Floof", "Merchant", [], [
+    variant("Open", "Squizzy & Floof", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HER101-RF.webp")
+  ]),
+  hero("Taipanis", "Unknown", ["Draconic"], [
+    variant("Ultimate Pit Fight", "Taipanis, Dracai of Judgement", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/JDG001-CF.webp")
+  ]),
+  hero("Taylor", "Shapeshifter", [], [
+    variant("Open", "Taylor", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/LSS003-CF.webp")
+  ]),
+  hero("Teklovossen", "Mechanologist", [], [
+    variant("Silver Age", "Teklovossen", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/TCC001-RF.webp")
+  ]),
+  hero("Terra", "Guardian", ["Elemental"], [
+    variant("Silver Age", "Terra", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/TER001.webp")
+  ]),
+  hero("Theryon", "Unknown", ["Light"], [
+    variant("Ultimate Pit Fight", "Theryon, Magister of Justice", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/JDG006-CF.webp")
+  ]),
+  hero("Tuffnut", "Brute", ["Revered"], [
+    variant("Silver Age", "Tuffnut", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SUP002.webp"),
+    variant("CC", "Tuffnut, Bumbling Hulkster", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SUP001.webp")
+  ]),
+  hero("Verdance", "Wizard", ["Elemental"], [
+    variant("Silver Age", "Verdance", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ROS014.webp")
+  ]),
+  hero("Victor Goldmane", "Guardian", [], [
+    variant("Silver Age", "Victor Goldmane", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HVY048.webp"),
+    variant("Ultimate Pit Fight", "Victor Goldmane, Match Fixer", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SMP006.webp")
+  ]),
+  hero("Viserai", "Runeblade", [], [
+    variant("CC", "Viserai, Rune Blood", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/AVS001.webp")
+  ]),
+  hero("Vynnset", "Runeblade", ["Shadow"], [
+    variant("Silver Age", "Vynnset", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/DTD134.webp")
+  ]),
+  hero("Yorick", "Bard", [], [
+    variant("Ultimate Pit Fight", "Yorick, Weaver of Tales", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/LSS004-CF.webp")
+  ]),
+  hero("Zen", "Ninja", ["Mystic"], [
+    variant("Silver Age", "Zen", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/MST047.webp"),
+    variant("Golden Age", "Zen, Tamer of Purpose", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/MST046.webp")
+  ]),
+  hero("Zyggy", "Illusionist", ["Lightning"], [
+    variant("Silver Age", "Zyggy", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/OMN002.webp")
+  ])
+];
+
+const seededHeroCatalog = [...heroCatalog, ...fabraryHeroAdditions];
+
 function hero(heroName, className, talents, variants) {
   return { hero: heroName, className, talents, variants };
 }
@@ -179,8 +387,15 @@ function variant(format, fullName, imageUrl, notes = "") {
 }
 
 function defaultDeckNote(format) {
+  if (format === "Blitz") return "Blitz hero shell";
   if (format === "Silver Age") return "Legal young hero shell";
+  if (format === "Open") return "Open format hero shell";
   if (format === "Living Legend") return "Living Legend hero shell";
+  if (format === "Ultimate Pit Fight") return "UPF hero shell";
+  if (format === "Clash") return "Clash hero shell";
+  if (format === "Draft") return "Draft hero shell";
+  if (format === "Sealed") return "Sealed hero shell";
+  if (format === "Golden Age") return "Golden Age hero shell";
   return "Legal CC hero shell";
 }
 
@@ -188,7 +403,7 @@ function thumbnailUrl(url) {
   return String(url || "").replace("/media/cards/large/", "/media/cards/small/");
 }
 
-const starterDecks = heroCatalog.flatMap((entry, index) =>
+const starterDecks = seededHeroCatalog.flatMap((entry, index) =>
   entry.variants.map((deckVariant, formatIndex) => ({
     id: crypto.randomUUID(),
     name: deckVariant.fullName,
