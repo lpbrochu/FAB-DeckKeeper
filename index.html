@@ -12,27 +12,27 @@
   </head>
   <body>
     <div class="app-shell">
-      <header class="topbar">
-        <div class="brand">
-          <div class="brand-mark" aria-hidden="true">
-            <span></span>
+      <div class="sticky-header">
+        <header class="topbar">
+          <div class="brand">
+            <div class="brand-mark" aria-hidden="true">
+              <span></span>
+            </div>
+            <h1>FAB DeckKeeper</h1>
           </div>
-          <h1>FAB DeckKeeper</h1>
-        </div>
-        <div class="top-actions">
-          <button class="icon-action" id="importButton" type="button" aria-label="Import decks" title="Import decks">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 15v4h14v-4"/></svg>
-          </button>
-          <button class="icon-action" id="exportButton" type="button" aria-label="Export decks" title="Export decks">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V9m0 0 4 4m-4-4-4 4M5 9V5h14v4"/></svg>
-          </button>
-          <button class="icon-action" id="resetButton" type="button" aria-label="Reset sample decks" title="Reset sample decks">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v6h6M20 20v-6h-6M5 15a7 7 0 0 0 11.7 3.2M19 9A7 7 0 0 0 7.3 5.8"/></svg>
-          </button>
-        </div>
-      </header>
+          <div class="top-actions">
+            <button class="icon-action" id="importButton" type="button" aria-label="Import decks" title="Import decks">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 15v4h14v-4"/></svg>
+            </button>
+            <button class="icon-action" id="exportButton" type="button" aria-label="Export decks" title="Export decks">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V9m0 0 4 4m-4-4-4 4M5 9V5h14v4"/></svg>
+            </button>
+            <button class="icon-action" id="resetButton" type="button" aria-label="Reset sample decks" title="Reset sample decks">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v6h6M20 20v-6h-6M5 15a7 7 0 0 0 11.7 3.2M19 9A7 7 0 0 0 7.3 5.8"/></svg>
+            </button>
+          </div>
+        </header>
 
-      <main>
         <section class="controls" aria-label="Deck filters">
           <label class="search-wrap">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.3-4.3M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z"/></svg>
@@ -74,7 +74,9 @@
             </select>
           </label>
         </section>
+      </div>
 
+      <main>
         <section id="deckList" class="deck-list" aria-live="polite"></section>
 
         <section class="matchup-card" id="matchupSection" aria-label="Random matchup">
