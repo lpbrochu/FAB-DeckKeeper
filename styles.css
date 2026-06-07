@@ -12,6 +12,12 @@
   --navy: #172433;
   --chip: #e9edf2;
   --chip-ink: #313944;
+  --chip-seed-0: #e8eef5;
+  --chip-seed-1: #f1e9d7;
+  --chip-seed-2: #eadfe8;
+  --chip-seed-3: #e3eee4;
+  --chip-seed-4: #ebe6df;
+  --chip-seed-5: #dfe9ea;
   --field: #fbfaf8;
   --button-soft: #f8f7f4;
   --topbar: rgba(246, 244, 239, 0.9);
@@ -43,6 +49,12 @@
     --navy: #171f2a;
     --chip: #26313d;
     --chip-ink: #e8edf3;
+    --chip-seed-0: #1b2635;
+    --chip-seed-1: #2c2514;
+    --chip-seed-2: #281a27;
+    --chip-seed-3: #182a1b;
+    --chip-seed-4: #2b231a;
+    --chip-seed-5: #152627;
     --field: #151a20;
     --button-soft: #20262d;
     --topbar: rgba(17, 20, 24, 0.9);
@@ -198,6 +210,7 @@ main {
   align-items: center;
   gap: 10px;
   min-height: 48px;
+  max-width: 500px;
   padding: 0 14px;
   background: var(--surface);
   border: 1px solid var(--line);
@@ -284,6 +297,7 @@ select {
 
 .deck-list {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 12px;
 }
 
@@ -663,16 +677,103 @@ select {
 
 dialog {
   width: min(94vw, 520px);
+  max-height: 90vh;
+  overflow-y: auto;
   color: var(--ink);
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: var(--shadow);
+  transition: width 0.3s ease;
 }
 
 dialog::backdrop {
   background: rgba(24, 32, 42, 0.36);
   backdrop-filter: blur(4px);
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dialog-preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.dialog-card-preview {
+  position: relative;
+  width: min(100%, 340px);
+  aspect-ratio: 2.5 / 3.5;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dialog-card-preview:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+}
+
+.dialog-card-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dialog-card-preview .fallback-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  background: var(--portrait, var(--accent));
+  font-weight: bold;
+  font-size: 2.5rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.dialog-card-preview .fallback-preview span {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (min-width: 600px) {
+  dialog {
+    width: min(94vw, 840px);
+  }
+  
+  .dialog-content {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+  
+  .dialog-preview-container {
+    width: auto;
+    position: sticky;
+    top: 0;
+  }
+  
+  .dialog-card-preview {
+    width: 340px;
+  }
 }
 
 .dialog-head {
@@ -794,11 +895,7 @@ dialog::backdrop {
   }
 }
 
-@media (min-width: 1120px) {
-  .deck-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
+
 
 @media (max-width: 420px) {
   .app-shell {

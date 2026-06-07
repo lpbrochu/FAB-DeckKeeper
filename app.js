@@ -5,7 +5,7 @@ const deckFormats = ["CC", "Silver Age"];
 
 const heroCatalog = [
   hero("Arakni", "Assassin", [], [
-    variant("CC", "Arakni, Huntsman", ""),
+    variant("CC", "Arakni, Huntsman", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/DYN113.webp"),
     variant("CC", "Arakni, Marionette", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HNT001.webp"),
     variant("Silver Age", "Arakni, Web of Deceit", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/WOD001-RF.webp")
   ]),
@@ -13,14 +13,14 @@ const heroCatalog = [
     variant("Silver Age", "Azalea", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ARC039.webp")
   ]),
   hero("Aurora", "Runeblade", ["Lightning"], [
-    variant("CC", "Aurora, Legacy of Tempest", ""),
-    variant("Silver Age", "Aurora, Emissary of Lightning", "")
+    variant("CC", "Aurora, Legacy of Tempest", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/OMN047.webp"),
+    variant("Silver Age", "Aurora, Emissary of Lightning", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/OMN048.webp")
   ]),
   hero("Betsy", "Guardian", [], [
     variant("CC", "Betsy, Skin in the Game", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HVY045.webp")
   ]),
   hero("Blaze", "Wizard", [], [
-    variant("Silver Age", "Blaze, Firemind", "")
+    variant("Silver Age", "Blaze, Firemind", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HER117-RF.webp")
   ]),
   hero("Boltyn", "Warrior", ["Light"], [
     variant("CC", "Ser Boltyn, Breaker of Dawn", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/MON029.webp"),
@@ -31,18 +31,18 @@ const heroCatalog = [
     variant("Silver Age", "Bravo, Flattering Showman", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/BDD001.webp")
   ]),
   hero("Briar", "Runeblade", ["Elemental", "Earth", "Lightning"], [
-    variant("Silver Age", "Briar", "")
+    variant("Silver Age", "Briar", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ELE063.webp")
   ]),
   hero("Chane", "Runeblade", ["Shadow"], [
-    variant("Silver Age", "Chane", "")
+    variant("Silver Age", "Chane", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/MON002.webp")
   ]),
   hero("Cindra", "Ninja", ["Draconic"], [
     variant("CC", "Cindra, Dracai of Retribution", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HNT054.webp"),
-    variant("Silver Age", "Cindra", "")
+    variant("Silver Age", "Cindra", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HNT055.webp")
   ]),
   hero("Dash", "Mechanologist", [], [
     variant("CC", "Dash I/O", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/EVO001.webp"),
-    variant("Silver Age", "Dash, Database", ""),
+    variant("Silver Age", "Dash, Database", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/EVO002.webp"),
     variant("Silver Age", "Dash", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ARC002.webp")
   ]),
   hero("Dorinthea", "Warrior", [], [
@@ -50,7 +50,7 @@ const heroCatalog = [
     variant("Silver Age", "Dorinthea", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/WTR114.webp")
   ]),
   hero("Emperor", "Wizard", ["Draconic", "Royal"], [
-    variant("CC", "Emperor, Dracai of Aesir", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/DYN001-CF.webp")
+    variant("Silver Age", "Emperor, Dracai of Aesir", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/DYN001-CF.webp")
   ]),
   hero("Fai", "Ninja", ["Draconic"], [
     variant("CC", "Fai, Rising Rebellion", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/UPR044.webp"),
@@ -69,7 +69,7 @@ const heroCatalog = [
     variant("CC", "Jarl Vetreiði", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/AJV001-RF.webp")
   ]),
   hero("Ira", "Ninja", [], [
-    variant("CC", "Ira, Scarlet Revenger", "")
+    variant("CC", "Ira, Scarlet Revenger", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ASR002.webp")
   ]),
   hero("Kassai", "Warrior", [], [
     variant("CC", "Kassai of the Golden Sand", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HVY090.webp")
@@ -82,19 +82,21 @@ const heroCatalog = [
     variant("Silver Age", "Kayo", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HVY002.webp")
   ]),
   hero("Kayo", "Brute", ["Reviled"], [
-    variant("CC", "Kayo, Underhanded Cheat", "")
+    variant("CC", "Kayo, Underhanded Cheat", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SUP063.webp")
   ]),
   hero("Levia", "Brute", ["Shadow"], [
     variant("CC", "Levia, Shadowborn Abomination", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/MON119.webp")
   ]),
   hero("Lexi", "Ranger", ["Elemental", "Ice", "Lightning"], [
-    variant("Silver Age", "Lexi", "")
+    variant("CC", "Lexi, Livewire", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ELE031.webp"),
+    variant("Silver Age", "Lexi", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ELE032.webp")
   ]),
-  hero("Lyath Goldmane", "Wizard", [], [
-    variant("CC", "Lyath Goldmane, Vile Savant", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/FR_SUP071.webp")
+  hero("Lyath Goldmane", "Guardian", ["Reviled"], [
+    variant("CC", "Lyath Goldmane, Vile Savant", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/FR_SUP071.webp"),
+    variant("Silver Age", "Lyath Goldmane", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SLY001.webp")
   ]),
   hero("Marlynn", "Ranger", ["Pirate"], [
-    variant("CC", "Marlynn, Treasure Hunter", "")
+    variant("CC", "Marlynn, Treasure Hunter", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SEA082.webp")
   ]),
   hero("Maxx", "Mechanologist", [], [
     variant("CC", "Maxx 'The Hype' Nitro", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/EVO004.webp")
@@ -106,27 +108,28 @@ const heroCatalog = [
     variant("CC", "Olympia, Prized Fighter", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HVY092.webp")
   ]),
   hero("Oldhim", "Guardian", ["Elemental", "Earth", "Ice"], [
-    variant("Silver Age", "Oldhim", "")
+    variant("Silver Age", "Oldhim", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ELE002.webp")
   ]),
   hero("Oscilio", "Wizard", ["Elemental", "Lightning"], [
     variant("CC", "Oscilio, Constella Intelligence", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ROS019.webp")
   ]),
   hero("Oscilio", "Wizard", ["Lightning"], [
-    variant("CC", "Oscilio, Forked Continuum", "")
+    variant("CC", "Oscilio, Forked Continuum", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/OMN094.webp")
   ]),
   hero("Prism", "Illusionist", ["Light"], [
+    variant("CC", "Prism, Sculptor of Arc Light", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/MON001.webp"),
     variant("CC", "Prism, Awakener of Sol", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HER086-CF.webp"),
     variant("Silver Age", "Prism", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/U-MON002.webp")
   ]),
   hero("Pleiades", "Guardian", ["Revered"], [
-    variant("CC", "Pleiades, Superstar", "")
+    variant("CC", "Pleiades, Superstar", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SUP009.webp")
   ]),
   hero("Puffin", "Mechanologist", ["Pirate"], [
-    variant("CC", "Puffin, Hightail", "")
+    variant("CC", "Puffin, Hightail", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SEA001.webp")
   ]),
   hero("Rhinar", "Brute", [], [
     variant("CC", "Rhinar, Reckless Rampage", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/WTR001.webp"),
-    variant("Silver Age", "Rhinar", "")
+    variant("Silver Age", "Rhinar", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/WTR002.webp")
   ]),
   hero("Riptide", "Ranger", [], [
     variant("CC", "Riptide, Lurker of the Deep", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HER078-CF.webp")
@@ -136,11 +139,11 @@ const heroCatalog = [
   ]),
   hero("Uzuri", "Assassin", [], [
     variant("CC", "Uzuri, Switchblade", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HER077-CF.webp"),
-    variant("Silver Age", "Uzuri", "")
+    variant("Silver Age", "Uzuri", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/OUT002.webp")
   ]),
   hero("Valda", "Guardian", [], [
     variant("CC", "Valda, Seismic Impact", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/MPG001.webp"),
-    variant("Silver Age", "Valda Brightaxe", "")
+    variant("Silver Age", "Valda Brightaxe", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/EVR019.webp")
   ]),
   hero("Verdance", "Wizard", ["Elemental", "Earth"], [
     variant("CC", "Verdance, Thorn of the Rose", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ROS013.webp")
@@ -155,10 +158,10 @@ const heroCatalog = [
     variant("CC", "Vynnset, Iron Maiden", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HER087-CF.webp")
   ]),
   hero("Yoji", "Guardian", [], [
-    variant("CC", "Yoji, Royal Protector", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/DYN025-RF.webp")
+    variant("Silver Age", "Yoji, Royal Protector", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/DYN025-RF.webp")
   ]),
   hero("Zyggy Starlight", "Illusionist", ["Lightning"], [
-    variant("CC", "Zyggy Starlight", "")
+    variant("CC", "Zyggy Starlight", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/OMN001.webp")
   ]),
   hero("Iyslander", "Wizard", ["Elemental", "Ice"], [
     variant("Silver Age", "Iyslander", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/EVR120.webp")
@@ -175,6 +178,7 @@ const fabraryHeroAdditions = [
     variant("Silver Age", "Arakni, Solitary Confinement", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/HNT262-MV.webp")
   ]),
   hero("Aurora", "Runeblade", ["Elemental"], [
+    variant("CC", "Aurora, Shooting Star", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ROS007.webp"),
     variant("Silver Age", "Aurora", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/ROS008.webp")
   ]),
   hero("Baalghor", "Unknown", ["Shadow"], [
@@ -233,9 +237,7 @@ const fabraryHeroAdditions = [
   hero("Levia", "Brute", ["Shadow"], [
     variant("Silver Age", "Levia", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/DTD104.webp")
   ]),
-  hero("Lyath Goldmane", "Guardian", ["Reviled"], [
-    variant("Silver Age", "Lyath Goldmane", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SLY001.webp")
-  ]),
+
   hero("Marlynn", "Pirate", [], [
     variant("Silver Age", "Marlynn", "https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/small/SEA083.webp")
   ]),
@@ -329,7 +331,14 @@ const starterDecks = seededHeroCatalog.flatMap((entry, index) =>
   }))
 );
 
-const chipPalette = ["#e8eef5", "#f1e9d7", "#eadfe8", "#e3eee4", "#ebe6df", "#dfe9ea"];
+const chipPalette = [
+  "var(--chip-seed-0)",
+  "var(--chip-seed-1)",
+  "var(--chip-seed-2)",
+  "var(--chip-seed-3)",
+  "var(--chip-seed-4)",
+  "var(--chip-seed-5)"
+];
 const $ = (selector) => document.querySelector(selector);
 
 let decks = loadDecks();
@@ -353,6 +362,43 @@ const elements = {
 };
 
 function normalizeDeck(deck) {
+  let imageUrl = deck.imageUrl || "";
+
+  // Check if we have an exact starter deck match in the catalog
+  const exactStarter = starterDecks.find(
+    (s) => normalizeKeyPart(s.name) === normalizeKeyPart(deck.name || "")
+      && normalizeKeyPart(s.hero) === normalizeKeyPart(deck.hero || "")
+      && normalizeKeyPart(s.className) === normalizeKeyPart(deck.className || deck.class || "")
+      && s.format === deck.format
+  );
+
+  // Check if the current URL is empty, broken, or contains a placeholder/invalid pattern
+  const isUrlBrokenOrEmpty = !imageUrl
+    || imageUrl.includes("undefined")
+    || imageUrl.endsWith("/")
+    || (imageUrl.includes("legendstory-production-s3-public") && !imageUrl.endsWith(".webp"))
+    || imageUrl.includes("HER148.webp")
+    || imageUrl.includes("HER147.webp")
+    || imageUrl.includes("HER117.webp")
+    || imageUrl.includes("HER097.webp")
+    || imageUrl.includes("HER123.webp")
+    || imageUrl.includes("HER139.webp");
+
+  if (exactStarter) {
+    // For exact default starter decks, keep image URL synced with catalog
+    imageUrl = exactStarter.imageUrl;
+  } else if (isUrlBrokenOrEmpty) {
+    // If name was customized but URL is empty/broken, fallback to matching hero class and format
+    const fallbackStarter = starterDecks.find(
+      (s) => normalizeKeyPart(s.hero) === normalizeKeyPart(deck.hero || "")
+        && normalizeKeyPart(s.className) === normalizeKeyPart(deck.className || deck.class || "")
+        && s.format === deck.format
+    );
+    if (fallbackStarter) {
+      imageUrl = fallbackStarter.imageUrl;
+    }
+  }
+
   return {
     id: deck.id || crypto.randomUUID(),
     name: deck.name || `${deck.hero || "Untitled"} Deck`,
@@ -360,7 +406,7 @@ function normalizeDeck(deck) {
     className: deck.className || deck.class || "Unknown",
     talents: Array.isArray(deck.talents) ? deck.talents : [],
     format: deckFormats.includes(deck.format) ? deck.format : "CC",
-    imageUrl: thumbnailUrl(deck.imageUrl || ""),
+    imageUrl: thumbnailUrl(imageUrl),
     notes: deck.notes || "",
     favorite: Boolean(deck.favorite),
     updatedAt: deck.updatedAt || Date.now(),
@@ -691,7 +737,57 @@ function openDeckDialog(deck = null) {
   $("#deckFormat").value = deck?.format || "CC";
   $("#deckNotes").value = deck?.notes || "";
   $("#deleteDeckButton").hidden = !deck;
+  updateDialogPreview();
   elements.dialog.showModal();
+}
+
+function updateDialogPreview() {
+  const heroName = $("#deckHero").value.trim();
+  const format = $("#deckFormat").value;
+  const className = $("#deckClass").value.trim();
+  const id = $("#deckId").value;
+
+  let deckToMatch = decks.find((d) => d.id === id);
+  let imageUrl = "";
+  let color = "";
+
+  if (deckToMatch && deckToMatch.imageUrl) {
+    imageUrl = deckToMatch.imageUrl;
+    color = deckToMatch.color;
+  }
+
+  const matchingStarter = starterDecks.find(
+    (s) => normalizeKeyPart(s.hero) === normalizeKeyPart(heroName)
+      && s.format === format
+  );
+
+  if (matchingStarter) {
+    imageUrl = matchingStarter.imageUrl;
+    color = matchingStarter.color;
+  }
+
+  const initials = heroName.split(/\s+/).map((part) => part[0]).join("").slice(0, 2).toUpperCase() || "?";
+  const previewContainer = $("#dialogCardPreview");
+
+  if (imageUrl) {
+    previewContainer.innerHTML = `
+      <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(heroName)} card art" onerror="this.remove(); showFallbackPreview('${escapeHtml(initials)}', '${escapeHtml(color)}')">
+    `;
+  } else {
+    showFallbackPreview(initials, color);
+  }
+}
+
+function showFallbackPreview(initials, color) {
+  const previewContainer = $("#dialogCardPreview");
+  const className = $("#deckClass").value.trim() || "Hero";
+  const seedColor = color || colorForSeed(`${$("#deckHero").value.trim()}${className}`);
+  previewContainer.innerHTML = `
+    <div class="fallback-preview" style="--portrait: ${seedColor}">
+      ${escapeHtml(initials)}
+      <span>${escapeHtml(className)}</span>
+    </div>
+  `;
 }
 
 function saveFromForm(event) {
@@ -856,6 +952,10 @@ elements.importFile.addEventListener("change", (event) => {
   if (file) importDecks(file);
   event.target.value = "";
 });
+
+$("#deckHero").addEventListener("input", updateDialogPreview);
+$("#deckClass").addEventListener("input", updateDialogPreview);
+$("#deckFormat").addEventListener("change", updateDialogPreview);
 
 randomizeMatchup();
 refresh();

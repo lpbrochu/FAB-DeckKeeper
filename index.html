@@ -113,18 +113,23 @@
           <button value="cancel" class="close-button" type="button" id="closeDialogButton" aria-label="Close">×</button>
         </div>
         <input type="hidden" id="deckId">
-        <div class="form-grid">
-          <label>Deck Name<input id="deckName" required maxlength="60"></label>
-          <label>Hero<input id="deckHero" required maxlength="40"></label>
-          <label>Class<input id="deckClass" required maxlength="40"></label>
-          <label>Talents<input id="deckTalents" placeholder="Ice, Lightning, Elemental"></label>
-          <label>Format
-            <select id="deckFormat">
-              <option>CC</option>
-              <option>Silver Age</option>
-            </select>
-          </label>
-          <label class="wide">Notes<input id="deckNotes" maxlength="90" placeholder="List version, testing note, or local meta note"></label>
+        <div class="dialog-content">
+          <div class="dialog-preview-container">
+            <div id="dialogCardPreview" class="dialog-card-preview"></div>
+          </div>
+          <div class="form-grid">
+            <label>Deck Name<input id="deckName" required maxlength="60"></label>
+            <label>Hero<input id="deckHero" required maxlength="40"></label>
+            <label>Class<input id="deckClass" required maxlength="40"></label>
+            <label>Talents<input id="deckTalents" placeholder="Ice, Lightning, Elemental"></label>
+            <label>Format
+              <select id="deckFormat">
+                <option>CC</option>
+                <option>Silver Age</option>
+              </select>
+            </label>
+            <label class="wide">Notes<input id="deckNotes" maxlength="90" placeholder="List version, testing note, or local meta note"></label>
+          </div>
         </div>
         <div class="dialog-actions">
           <button type="button" class="danger" id="deleteDeckButton">Delete</button>
